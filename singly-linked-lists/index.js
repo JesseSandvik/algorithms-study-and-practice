@@ -66,8 +66,6 @@ linkedList.insertAtTail(6);
 linkedList.insertAtTail(7);
 linkedList.insertAtTail(8);
 
-console.log(linkedList);
-
 // function reverseLinkedList(list) {
 //     const reversedList = new LinkedList();
 //     let node = list.head;
@@ -80,7 +78,8 @@ console.log(linkedList);
 // }
 
 function reverseLinkedList(list) {
-    let node = list.head;
+    const node = list.head;
+
     if (!node) return;
 
     let previous = null;
@@ -88,9 +87,13 @@ function reverseLinkedList(list) {
     let next = null;
 
     while (current) {
+        // first temporarily store all of the elements in the linked list other than the current node.
         next = current.next;
+        // assign the reference of the current node the previous node. The first iteration will assign this to null, creating a new 'tail' node.
         current.next = previous;
+        // reassign the previous node to the current node, which will now be referencing the previous node.
         previous = current;
+        // reassign the current node to the remaining elements in the linked list, and continue iterating until the while loop conditional statement is falsy.
         current = next;
     }
     return previous;
